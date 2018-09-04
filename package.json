@@ -1,0 +1,45 @@
+{
+  "_from": "jsx-vanilla@latest",
+  "_id": "jsx-vanilla@2.1.2",
+  "_inBundle": false,
+  "_integrity": "sha512-XD+HqE+WZSifHiHQgBlX/Y6cPptav78mAFQO77291ZEwsau+YLfoUmzlJSUO3b2bS5mIxctGaE+er/tMUvK0Aw==",
+  "_location": "/jsx-vanilla",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "jsx-vanilla@latest",
+    "name": "jsx-vanilla",
+    "escapedName": "jsx-vanilla",
+    "rawSpec": "latest",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/",
+    "/jsx-vanilla-loader"
+  ],
+  "_resolved": "https://registry.npmjs.org/jsx-vanilla/-/jsx-vanilla-2.1.2.tgz",
+  "_shasum": "e2407d692116a6f37254ab89cd7adba51f5a4815",
+  "_spec": "jsx-vanilla@latest",
+  "_where": "G:\\Programs\\xampp\\htdocs\\node",
+  "author": {
+    "name": "AdeonMaster"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "JSX is a JavaScript XML/HTML syntax extender, that allows you to render XML/HTML tags inside vanilla JavaScript.",
+  "keywords": [
+    "html",
+    "js",
+    "preprocessor",
+    "jsx"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "jsx-vanilla",
+  "version": "2.1.2",
+  "dependencies": {
+  }
+}
