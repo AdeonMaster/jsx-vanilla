@@ -1,5 +1,7 @@
 # JSX Vanilla
 
+# [![npm version](https://badge.fury.io/js/jsx-vanilla.svg)](https://badge.fury.io/js/jsx-vanilla)
+
 JSX is a JavaScript XML/HTML syntax extender, that allows you to render XML/HTML tags inside vanilla JavaScript. Originaly inspired by React.js JSX
 
 # Examples of usage
