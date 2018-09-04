@@ -39,7 +39,9 @@
   "license": "MIT",
   "main": "index.js",
   "name": "jsx-vanilla",
-  "version": "2.1.2",
+  "version": "2.1.7",
   "dependencies": {
+    "acorn": "^5.7.2",
+    "acorn-jsx": "^4.1.1"
   }
 }

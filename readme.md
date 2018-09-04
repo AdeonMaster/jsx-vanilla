@@ -4,25 +4,24 @@
 
 JSX is a JavaScript XML/HTML syntax extender, that allows you to render XML/HTML tags inside vanilla JavaScript. Originaly inspired by React.js JSX
 
-# Examples of usage
+# Syntax examples
 
-Here is some examples of JSX Vanilla usage
+Here are some examples of JSX Vanilla usage
 
-## Basic syntax
+## Variables declaration
 
 ```javascript
 	let 
 		a = <p>Hello world!</p>,
-		b = (<p>Hello world</p>),
-		c = (
+		b = (
 			<div>
-				<p>Hello world!</p>
+				<h1>Hello world!</h1>
 			</div>
 		)
 	;
 	
 	document.body.appendChild(a);
-	document.body.appendChild(<p>Hello world!</p>);
+	document.body.appendChild(<h2>Hello world!</h2>);
 ```
 ## Parameters usage
 
@@ -37,15 +36,10 @@ Here is some examples of JSX Vanilla usage
 	}
 	
 	let 
-		a = <p>{text}</p>,
-		b = (<p>{(2+2)}</p>),
-		c = (<p>{text()}</p>),
-		d = (<p>{(six > 5 ? "True" : "False")}</p>),
-		e = (
-			<p>{(function(){
-				return 4 > 2 ? "Four bigger than two" : "Two bigger than four";
-			})()}</p>
-		)
+		a = <h1>{text}</h1>,
+		b = <h2>{(2+2)}</h2>,
+		c = <h3>{text()}</h3>,
+		d = <p>{(six > 5 ? 'True' : 'False')}</p>
 	;
 ```
 
@@ -56,17 +50,19 @@ const array = ['First', 'Second', 'Third'];
 
 let 
     a = (
-        <ul class="menu">
-            {array.map(item => (
-                <li>{item}</li>
-            )).join('')}
-        </ul>
-    )
+		<ul class="menu">
+			{array.map(item => (
+				<li>{item}</li>
+			)).join('')}
+		</ul>
+	)
 ;
 	
 ```
 
 ## Example of file preprocessing
+
+If you are using webpack you can install custom <a href="https://www.npmjs.com/package/jsx-vanilla-loader">jsx-vanilla loader</a>
 
 ```javascript
 const 
@@ -80,3 +76,8 @@ fs.readFile('pathToInputFile', 'utf8', function(err, contents) {
    });
 });
 ```
+
+# Known issues
+
+- String literals passed as parameters should be covered with a ' quotes, otherwise it will cause error
+- Passing a closure as parameter will cause error
