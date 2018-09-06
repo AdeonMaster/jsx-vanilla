@@ -106,7 +106,8 @@ class JSXVanilla {
 				}
 			}).join(" ");
 		}
-		tmp += '>';
+
+		tmp += element.selfClosing ? '/>' : '>';
 		
 		tmp += element.children.map(child => {
 			switch(child.type) {
@@ -146,7 +147,9 @@ class JSXVanilla {
 			}
 		}).join("");
 		
-		tmp +='</'+element.closingElement.name.name+'>';
+		if(element.closingElement) {
+			tmp +='</'+element.closingElement.name.name+'>';
+		}
 		
 		return tmp;
 	}

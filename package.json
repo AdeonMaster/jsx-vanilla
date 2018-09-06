@@ -1,28 +1,29 @@
 {
-  "_from": "jsx-vanilla",
-  "_id": "jsx-vanilla@2.1.10",
+  "_from": "jsx-vanilla@latest",
+  "_id": "jsx-vanilla@2.1.11",
   "_inBundle": false,
-  "_integrity": "sha512-pCNECLI6dYHgZ+ktFk+sEktwxLzQD9FKX1HqVCnYr9mEpM05xGWQqsE2hJtjADJDxdOkzAs9oaaDZ92JH6YXjw==",
+  "_integrity": "sha512-xshg7dUWjaTRW/NC2h9T2NlVr9AzvLabVx0eWxv3yyioe+6OC0CbU8aGokBYZqwjb8I9g88CSpxNk34vLdEBkA==",
   "_location": "/jsx-vanilla",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "jsx-vanilla",
+    "raw": "jsx-vanilla@latest",
     "name": "jsx-vanilla",
     "escapedName": "jsx-vanilla",
-    "rawSpec": "",
+    "rawSpec": "latest",
     "saveSpec": null,
     "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
-    "/"
+    "/",
+    "/jsx-vanilla-loader"
   ],
-  "_resolved": "https://registry.npmjs.org/jsx-vanilla/-/jsx-vanilla-2.1.10.tgz",
-  "_shasum": "481474346c16764057c471e013a6ce6845ee0747",
-  "_spec": "jsx-vanilla",
-  "_where": "C:\\Users\\AdeonMaster\\Desktop\\test",
+  "_resolved": "https://registry.npmjs.org/jsx-vanilla/-/jsx-vanilla-2.1.11.tgz",
+  "_shasum": "41c55d4ac052ef3e53e00f62a48b3a1b86c1864a",
+  "_spec": "jsx-vanilla@latest",
+  "_where": "C:\\xampp\\htdocs\\node",
   "author": {
     "name": "AdeonMaster"
   },
@@ -50,5 +51,5 @@
     "type": "git",
     "url": "git+https://github.com/AdeonMaster/jsx-vanilla.git"
   },
-  "version": "2.1.11"
+  "version": "2.1.12"
 }
