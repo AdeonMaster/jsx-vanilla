@@ -1,16 +1,7 @@
-'use strict';
-
 const
 	acorn = require("acorn-jsx"),
 	walk = require("acorn/dist/walk")
 ;
-
-class JSXVanillaError extends Error {
-	constructor(message) {
-		super(message);
-		this.name = "JSXVanillaError";
-	}
-}
 
 class JSXVanilla {
 	static extendWalkBase(walk) {
@@ -35,108 +26,143 @@ class JSXVanilla {
 		};
 
 		walk.base.JSXAttribute = (node, st, c) => {
-			c(node.value, st);
+			//c(node.value, st);
 		};
 		
 		walk.base.JSXEmptyExpression = (node, st, c) => {
 		};
 	}
-	
-	//to do: replace walk.simple with a custom walk.first
-	static findJSXElement(content) {
-		try {
-			const root = acorn.parse(content, {
-				plugins: {jsx:true}
-			});
-			
-			let element = null;
-			
-			walk.simple(root, {
-				JSXElement(node) {
-					element = node;
-				}
-			});
-			
-			return element;
-		} catch(e) {
-			throw new JSXVanillaError(e.toString());
+
+	static findNode(content, type) {
+		const root = acorn.parse(content, {
+			plugins: {jsx:true},
+			sourceType: 'module'
+		});
+		
+		let 
+			element = null,
+			result = {}
+		;
+		result[type] = (node) => {
+			element = node;
 		}
-	}
-
-	//to do: replace walk.simple with a custom walk.first
-	static findJSXExpressionContainer(content) {
-		try {
-			const root = acorn.parse(content, {
-				plugins: {jsx:true}
-			});
-
-			let element = null;
-
-			walk.simple(root, {
-				JSXExpressionContainer(node) {
-					element = node;
-				}
-			});
-			
-			return element;
-		} catch(e) {
-			throw new JSXVanillaError(e.toString());
-		}
+		
+		walk.simple(root, result);
+		
+		return element;
 	}
 	
-	static sugar_expression(content) {
-		let element = this.findJSXExpressionContainer(content);
-		if(element) {
-			let string = content.substr(element.start+1, element.end - element.start-2);
-
-			//remove whitespaces
-			string = string.replace(/[\r\n\t]/g, '');
-			
-			//transform JSXExpressionContainer into string
-			if(element.expression.type == "Literal") {
-				string = "\"'+" + string + "+'\"";
-			} else {
-				string = "'+" + string + "+'";
+	static transformNode(node, content) {
+		switch(child.type) {
+			case 'JSXText': {
+				return child.value;
 			}
 			
-			return content.substr(0, element.start) + string + content.substr(element.end, content.length);
-		} else {
-			return null;
+			case 'JSXExpressionContainer': {
+				switch(child.expression.type) {
+					case 'Literal': {
+						return child.expression.value;
+					}
+					
+					case 'Identifier': {
+						return "'+"+child.expression.name+"+'";
+					}
+					
+					case 'BinaryExpression': {
+						return "'+"+content.substr(child.start+1, child.end-child.start-2)+"+'";
+					}
+				}
+				
+				return "";
+			}
+			
+			case 'JSXElement': {
+				return this.transformJSXElement(child, content);
+			}
+			
+			default: {
+				return "";
+			}
 		}
 	}
-		
-	static sugar_element(content) {
-		let element = this.findJSXElement(content);
-		if(element) {
-			let string = content.substr(element.start, element.end - element.start);
-			
-			//remove whitespaces
-			string = string.replace(/[\r\n\t]/g, '');
-			
-			//transform JSXElement into string
-			string = "'" + string + "'";
-
-			return content.substr(0, element.start) + string + content.substr(element.end, content.length);
-		} else {
-			return null;
+	
+	static transformJSXElement(element, content) {
+		let tmp ='';
+		tmp += '<'+element.openingElement.name.name;
+		if(element.openingElement.attributes.length) {
+			tmp += " "+element.openingElement.attributes.map(attribute => {
+				if(attribute.value) {
+					switch(attribute.value.type) {
+						case 'Literal': {
+							return attribute.name.name+'="\'+\''+attribute.value.value+'\'+\'"';
+						}
+						
+						case 'JSXExpressionContainer': {
+							return (attribute.name.name+'="\'+'+content.substr(attribute.value.start+1, attribute.value.end-attribute.value.start-2)+'+\'"');
+						}
+					}
+				} else {
+					return attribute.name.name;
+				}
+			}).join(" ");
 		}
+		tmp += '>';
+		
+		tmp += element.children.map(child => {
+			switch(child.type) {
+				case 'JSXText': {
+					return child.value;
+				}
+				
+				case 'JSXExpressionContainer': {
+					switch(child.expression.type) {
+						case 'Literal': {
+							return child.expression.value;
+						}
+						
+						case 'Identifier': {
+							return "'+"+child.expression.name+"+'";
+						}
+						
+						case 'BinaryExpression': {
+							return "'+"+content.substr(child.start+1, child.end-child.start-2)+"+'";
+						}
+						
+						case 'ConditionalExpression': {
+							return "'+"+content.substr(child.start+1, child.end-child.start-2)+"+'";
+						}
+					}
+					
+					return "'+"+content.substr(child.expression.start, child.expression.end-child.expression.start)+"+'";
+				}
+				
+				case 'JSXElement': {
+					return this.transformJSXElement(child, content);
+				}
+				
+				default: {
+					return "";
+				}
+			}
+		}).join("");
+		
+		tmp +='</'+element.closingElement.name.name+'>';
+		
+		return tmp;
 	}
 	
 	static preprocess(content) {
 		this.extendWalkBase(walk);
 		
-		let tmp = null;
+		let element = null;
 		
-		while((tmp = this.sugar_expression(content)) != null) {
-			content = tmp;
+		while((element = this.findNode(content, 'JSXElement')) != null) {
+			const transformed = this.transformJSXElement(element, content).replace(/[\r\n\t]/g, '');
+			content = content.substr(0, element.start)+"'"+transformed+"'"+content.substr(element.end, content.length);
 		}
 		
-		while((tmp = this.sugar_element(content)) != null) {
-			content = tmp;
-		}
-		
-		content = "/*JSX override*/if(!window.NATIVE_appendChild) {window.NATIVE_appendChild = Node.prototype.appendChild;Node.prototype.appendChild = function() {if(typeof arguments[0] == 'string') {arguments[0] = document.createRange().createContextualFragment(arguments[0]);}return window.NATIVE_appendChild.apply(this, arguments);};}/*JSX override*/\n\n" + content;
-		
+		content = "/*JSX override*/if(!window.NATIVE_appendChild){window.NATIVE_appendChild = Node.prototype.appendChild;Node.prototype.appendChild = function(){if(typeof arguments[0] == 'string'){arguments[0] = document.createRange().createContextualFragment(arguments[0]);}return window.NATIVE_appendChild.apply(this, arguments);};}/*JSX override*/\n\n" + content;
+
 		return content;
 	}
 }

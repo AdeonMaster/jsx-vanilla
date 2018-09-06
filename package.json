@@ -1,35 +1,42 @@
 {
-  "_from": "jsx-vanilla@latest",
-  "_id": "jsx-vanilla@2.1.2",
+  "_from": "jsx-vanilla",
+  "_id": "jsx-vanilla@2.1.10",
   "_inBundle": false,
-  "_integrity": "sha512-XD+HqE+WZSifHiHQgBlX/Y6cPptav78mAFQO77291ZEwsau+YLfoUmzlJSUO3b2bS5mIxctGaE+er/tMUvK0Aw==",
+  "_integrity": "sha512-pCNECLI6dYHgZ+ktFk+sEktwxLzQD9FKX1HqVCnYr9mEpM05xGWQqsE2hJtjADJDxdOkzAs9oaaDZ92JH6YXjw==",
   "_location": "/jsx-vanilla",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "jsx-vanilla@latest",
+    "raw": "jsx-vanilla",
     "name": "jsx-vanilla",
     "escapedName": "jsx-vanilla",
-    "rawSpec": "latest",
+    "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
-    "/",
-    "/jsx-vanilla-loader"
+    "/"
   ],
-  "_resolved": "https://registry.npmjs.org/jsx-vanilla/-/jsx-vanilla-2.1.2.tgz",
-  "_shasum": "e2407d692116a6f37254ab89cd7adba51f5a4815",
-  "_spec": "jsx-vanilla@latest",
-  "_where": "G:\\Programs\\xampp\\htdocs\\node",
+  "_resolved": "https://registry.npmjs.org/jsx-vanilla/-/jsx-vanilla-2.1.10.tgz",
+  "_shasum": "481474346c16764057c471e013a6ce6845ee0747",
+  "_spec": "jsx-vanilla",
+  "_where": "C:\\Users\\AdeonMaster\\Desktop\\test",
   "author": {
     "name": "AdeonMaster"
   },
+  "bugs": {
+    "url": "https://github.com/AdeonMaster/jsx-vanilla/issues"
+  },
   "bundleDependencies": false,
+  "dependencies": {
+    "acorn": "^5.7.2",
+    "acorn-jsx": "^4.1.1"
+  },
   "deprecated": false,
   "description": "JSX is a JavaScript XML/HTML syntax extender, that allows you to render XML/HTML tags inside vanilla JavaScript.",
+  "homepage": "https://github.com/AdeonMaster/jsx-vanilla#readme",
   "keywords": [
     "html",
     "js",
@@ -39,13 +46,9 @@
   "license": "MIT",
   "main": "index.js",
   "name": "jsx-vanilla",
-  "version": "2.1.8",
-  "dependencies": {
-    "acorn": "^5.7.2",
-    "acorn-jsx": "^4.1.1"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdeonMaster/jsx-vanilla.git"
-  }
+    "url": "git+https://github.com/AdeonMaster/jsx-vanilla.git"
+  },
+  "version": "2.1.11"
 }
