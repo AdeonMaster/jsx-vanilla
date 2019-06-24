@@ -1,7 +1,5 @@
-const
-	acorn = require("acorn-jsx"),
-	walk = require("acorn/dist/walk")
-;
+const acorn = require('acorn-jsx');
+const walk = require('acorn/dist/walk');
 
 class JSXVanilla {
 	static extendWalkBase(walk) {
@@ -35,7 +33,9 @@ class JSXVanilla {
 
 	static findNode(content, type) {
 		const root = acorn.parse(content, {
-			plugins: {jsx:true},
+			plugins: {
+        jsx: true
+      },
 			sourceType: 'module'
 		});
 		
@@ -73,7 +73,7 @@ class JSXVanilla {
 					}
 				}
 				
-				return "";
+				return '';
 			}
 			
 			case 'JSXElement': {
@@ -81,7 +81,7 @@ class JSXVanilla {
 			}
 			
 			default: {
-				return "";
+				return '';
 			}
 		}
 	}
@@ -104,7 +104,7 @@ class JSXVanilla {
 				} else {
 					return attribute.name.name;
 				}
-			}).join(" ");
+			}).join(' ');
 		}
 
 		tmp += element.selfClosing ? '/>' : '>';
@@ -142,10 +142,10 @@ class JSXVanilla {
 				}
 				
 				default: {
-					return "";
+					return '';
 				}
 			}
-		}).join("");
+		}).join('');
 		
 		if(element.closingElement) {
 			tmp +='</'+element.closingElement.name.name+'>';

@@ -11,7 +11,7 @@ JSX Vanilla is a JavaScript preprocessor that allows you to use JSX syntax in va
 
 By using JSX one can write the following JSX/JavaScript code:
 ```javascript
-let a = (
+const a = (
   <ul>
     <li><a href="#">First</></li>
     <li><a href="#">Second</></li>
@@ -22,11 +22,11 @@ let a = (
 
 And JSX Vanilla will transform it into this:
 ```javascript
-let a = '<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>';
+const a = '<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>';
 ```
 Then it could be transformed into DOM elements:
 ```javascript
-let a = document.createRange().createContextualFragment('<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>');
+const a = document.createRange().createContextualFragment('<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>');
 ```
 # Syntax examples
 Here are some examples of JSX Vanilla usage.
@@ -94,7 +94,7 @@ const
 
 fs.readFile('pathToInputFile', 'utf8', function(err, contents) {
   fs.writeFile('pathToOutputFile', JSXVanilla.preprocess(contents), function(err) {
-  //other code
+    //other code
   });
 });
 ```
