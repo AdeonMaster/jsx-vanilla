@@ -12,11 +12,11 @@ JSX Vanilla is a JavaScript preprocessor that allows you to use JSX syntax in va
 By using JSX one can write the following JSX/JavaScript code:
 ```javascript
 let a = (
-    <ul>
-		<li><a href="#">First</></li>
-		<li><a href="#">Second</></li>
-		<li><a href="#">Third</></li>
-    </ul>
+  <ul>
+    <li><a href="#">First</></li>
+    <li><a href="#">Second</></li>
+    <li><a href="#">Third</></li>
+  </ul>
 );
 ```
 
@@ -33,61 +33,51 @@ Here are some examples of JSX Vanilla usage.
 
 ## Variables declaration
 ```javascript
-let 
-	a = <p>Hello world!</p>,
-	b = (
-		<ul>
-			<li><a href="#">First</></li>
-			<li><a href="#">Second</></li>
-			<li><a href="#">Third</></li>
-		</ul>
-	)
-;
+const a = <p>Hello world!</p>;
+const b = (
+  <ul>
+    <li><a href="#">First</></li>
+    <li><a href="#">Second</></li>
+    <li><a href="#">Third</></li>
+  </ul>
+);
 ```
 
 ## Parameters usage
 ```javascript
-const 
-	text = "Hello world!",
-	six = 6
-;
+const text = 'Hello world!';
+const six = 6;
 
-function test() {
-	return text;
-}
+const test = () => text;
 
-let 
-	a = <h1>{text}</h1>,
-	b = <h2>{(2+2)}</h2>,
-	c = <h3>{text()}</h3>,
-	d = <p>{(six > 5 ? 'True' : 'False')}</p>,
-	e = (
-	    <p>{(function(){
-    	    return text;
-    	})()}</p>
-	)
-;
+const a = <h1>{text}</h1>;
+const b = <h2>{(2+2)}</h2>;
+const c = <h3>{text()}</h3>;
+const d = <p>{(six > 5 ? 'True' : 'False')}</p>;
+const e = (
+  <p>{() => text}</p>
+);
 ```
 
 ## Cycles examples
 ```javascript
 const array = ['First', 'Second', 'Third'];
 
-let 
-    a = <ul class="menu">{array.map(item => <li>{item}</li>).join('')}</ul>,
-	b = (
-        <ul class="menu">
-	        {array.map(item => {
-	            return <li>{item}</li>;
-	        }).join('')}
-	    </ul>
-	)
-;
+const a = <ul class="menu">{array.map(item => <li>{item}</li>).join('')}</ul>;
+const b = (
+  <ul class="menu">
+    {array.map(item => {
+      const value = `${item} item`;
+
+      return <li>{value}</li>;
+    }).join('')}
+  </ul>
+);
 ```
 
 ## Rendering elements
 ```javascript
-let a = <h1>Hello world!</h1>;
+const a = <h1>Hello world!</h1>;
 
 document.body.appendChild(a);
 document.body.appendChild(<h2>Hello world!</h2>);
@@ -103,11 +93,11 @@ const
 ;
 
 fs.readFile('pathToInputFile', 'utf8', function(err, contents) {
-   fs.writeFile('pathToOutputFile', JSXVanilla.preprocess(contents), function(err) {
-		//other code
-   });
+  fs.writeFile('pathToOutputFile', JSXVanilla.preprocess(contents), function(err) {
+  //other code
+  });
 });
 ```
 
 # Known issues
- None
+None
