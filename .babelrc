@@ -1,0 +1,16 @@
+{
+  "presets" : [
+    "@babel/preset-env",
+  ],
+  "plugins": [
+    // [
+    //   "transform-imports", {
+    //     "ramda": {
+    //       "transform": "ramda/es/${member}",
+    //       "preventFullImport": true
+    //     }
+    //   }
+    // ],
+    "@babel/plugin-proposal-object-rest-spread"
+  ]
+}
