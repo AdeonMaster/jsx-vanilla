@@ -1,14 +1,10 @@
-const acorn = require('acorn-jsx');
+const acorn = require('acorn');
+const acornJSX = require('acorn-jsx');
 
-const acornOptions = {
-	plugins: {
-		jsx: true
-	},
-	sourceType: 'module'
-};
+const extendedAcornParser = acorn.Parser.extend(acornJSX());
 
 const findJSXNode = (walker, content) => {
-  const root = acorn.parse(content, acornOptions);
+  const root = extendedAcornParser.parse(content);
 
   let foundNode = null;
 

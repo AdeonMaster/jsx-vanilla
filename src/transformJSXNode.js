@@ -43,31 +43,31 @@ const transformNode = (node, content) => {
 }
 
 const getOpeningTagName = node => node.openingElement.name.name;
-const hasOpeningTagAttributes = node => node.openingElement.attributes.length;
-const getOpeningTagAttributes = node => node.openingElement.attributes;
+const hasAttributes = node => node.openingElement.attributes.length;
+const getAttributes = node => node.openingElement.attributes;
 const getChildren = node => node.children;
 const hasClosingTag = node => node.closingElement;
 const getClosingTagName = node => node.closingElement.name.name;
 const isSelfClosing = node => node.selfClosing;
 
-const getOpeningTagTransformedAttributes = (node, content) => hasOpeningTagAttributes(node)
-  ? ' '+getOpeningTagAttributes(node).map(attribute => transformAttribute(attribute, content)).join(' ')
+const getTransformedAttributes = (node, content) => hasAttributes(node)
+  ? ' '+getAttributes(node).map(attribute => transformAttribute(attribute, content)).join(' ')
   : '';
 const getTransfomedChildren = (node, content) => getChildren(node).map(children => transformNode(children, content)).join('');
 
 const transformJSXNode = (node, content) => {
   const openingTagName = getOpeningTagName(node);
-  const openingTagTransformedAttributes = getOpeningTagTransformedAttributes(node, content);
+  const transformedAttributes = getTransformedAttributes(node, content);
   
   if (hasClosingTag(node)) {
     const transformedChildren = getTransfomedChildren(node, content);
     const closingTagName = getClosingTagName(node);
 
-    return `<${openingTagName}${openingTagTransformedAttributes}>${transformedChildren}</${closingTagName}>`;
+    return `<${openingTagName}${transformedAttributes}>${transformedChildren}</${closingTagName}>`;
   } else {
     return isSelfClosing(node)
-      ? `<${openingTagName}${openingTagTransformedAttributes}/>`
-      : `<${openingTagName}${openingTagTransformedAttributes}>`
+      ? `<${openingTagName}${transformedAttributes}/>`
+      : `<${openingTagName}${transformedAttributes}>`
   }
 }
 

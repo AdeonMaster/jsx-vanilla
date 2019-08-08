@@ -11,7 +11,7 @@ JSX Vanilla is a JavaScript preprocessor that allows you to use JSX syntax in va
 
 By using JSX one can write the following JSX/JavaScript code:
 ```js
-const a = (
+const menu = (
   <ul>
     <li><a href="#">First</></li>
     <li><a href="#">Second</></li>
@@ -22,19 +22,19 @@ const a = (
 
 And JSX Vanilla will transform it into this:
 ```js
-const a = '<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>';
+const menu = '<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>';
 ```
 Then it could be transformed into DOM elements:
 ```js
-const a = document.createRange().createContextualFragment('<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>');
+const menu = document.createRange().createContextualFragment('<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>');
 ```
 # Syntax examples
 Here are some examples of JSX Vanilla usage.
 
 ## Variables declaration
 ```js
-const a = <p>Hello world!</p>;
-const b = (
+const text = <p>Hello world!</p>;
+const menu = (
   <ul>
     <li><a href="#">First</></li>
     <li><a href="#">Second</></li>
@@ -45,17 +45,18 @@ const b = (
 
 ## Parameters usage
 ```js
-const text = 'Hello world!';
-const six = 6;
+const SIX = 6;
 
-const test = () => text;
+const text = 'Hello world!';
+
+const appendHeart = text => `${text} <3`;
 
 const a = <h1>{text}</h1>;
 const b = <h2>{(2+2)}</h2>;
-const c = <h3>{text()}</h3>;
-const d = <p>{(six > 5 ? 'True' : 'False')}</p>;
+const c = <h3>{appendHeart('I love JSX!')}</h3>;
+const d = <p>{(SIX > 5 ? 'True' : 'False')}</p>;
 const e = (
-  <p>{() => text}</p>
+  <p>{(() => text)()}</p>
 );
 ```
 
@@ -63,41 +64,42 @@ const e = (
 ```js
 const array = ['First', 'Second', 'Third'];
 
-const a = <ul class="menu">{array.map(item => <li>{item}</li>).join('')}</ul>;
-const b = (
+const menu = (
   <ul class="menu">
-    {array.map(item => {
-      const value = `${item} item`;
-
-      return <li>{value}</li>;
-    }).join('')}
+    {array.map(item => (
+      <li>{item}</li>
+    )).join('')}
   </ul>
 );
 ```
 
 ## Rendering elements
 ```js
+const { nodeFromString } = require('jsx-vanilla');
+
 const a = <h1>Hello world!</h1>;
 
-document.body.appendChild(a);
-document.body.appendChild(<h2>Hello world!</h2>);
+document.body.appendChild(nodeFromString(a));
+document.body.appendChild(nodeFromString(<h2>Hello world!</h2>));
 ```
 
-## Example of file preprocessing
+## Example of file preprocessing in Node.js
 If you are using webpack you can install custom <a href="https://www.npmjs.com/package/jsx-vanilla-loader">jsx-vanilla loader</a>
 
 ```js
-const 
-	JSXVanilla = require('jsx-vanilla'),
-	fs = require('fs')
-;
+const { preprocess } = require('jsx-vanilla');
+const fs = require('fs');
 
-fs.readFile('pathToInputFile', 'utf8', function(err, contents) {
-  fs.writeFile('pathToOutputFile', JSXVanilla.preprocess(contents), function(err) {
-    //other code
+fs.readFile('TARGET_FILE_PATH', 'utf8', (error, content) => {
+  if (error) return;
+
+  fs.writeFile('OUTPUT_FILE_PATH', preprocess(content), error => {
+    if (error) return;
+
+    // other code
   });
 });
 ```
 
 # Known issues
-None
+- There is some extra space between nested tags after preprocess which is not affect the output result
