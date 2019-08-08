@@ -10,7 +10,7 @@ Basically, by using JSX you can write concise HTML/XML-like structures (e.g., DO
 JSX Vanilla is a JavaScript preprocessor that allows you to use JSX syntax in vanilla JavaScript, separetly from React. It transforms JSX elements into strings, then into DOM elements.
 
 By using JSX one can write the following JSX/JavaScript code:
-```javascript
+```js
 const a = (
   <ul>
     <li><a href="#">First</></li>
@@ -21,18 +21,18 @@ const a = (
 ```
 
 And JSX Vanilla will transform it into this:
-```javascript
+```js
 const a = '<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>';
 ```
 Then it could be transformed into DOM elements:
-```javascript
+```js
 const a = document.createRange().createContextualFragment('<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>');
 ```
 # Syntax examples
 Here are some examples of JSX Vanilla usage.
 
 ## Variables declaration
-```javascript
+```js
 const a = <p>Hello world!</p>;
 const b = (
   <ul>
@@ -44,7 +44,7 @@ const b = (
 ```
 
 ## Parameters usage
-```javascript
+```js
 const text = 'Hello world!';
 const six = 6;
 
@@ -60,7 +60,7 @@ const e = (
 ```
 
 ## Cycles examples
-```javascript
+```js
 const array = ['First', 'Second', 'Third'];
 
 const a = <ul class="menu">{array.map(item => <li>{item}</li>).join('')}</ul>;
@@ -76,7 +76,7 @@ const b = (
 ```
 
 ## Rendering elements
-```javascript
+```js
 const a = <h1>Hello world!</h1>;
 
 document.body.appendChild(a);
@@ -86,7 +86,7 @@ document.body.appendChild(<h2>Hello world!</h2>);
 ## Example of file preprocessing
 If you are using webpack you can install custom <a href="https://www.npmjs.com/package/jsx-vanilla-loader">jsx-vanilla loader</a>
 
-```javascript
+```js
 const 
 	JSXVanilla = require('jsx-vanilla'),
 	fs = require('fs')
