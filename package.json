@@ -1,6 +1,6 @@
 {
   "name": "jsx-vanilla",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "JSX is a JavaScript XML/HTML syntax extender, that allows you to render XML/HTML tags inside vanilla JavaScript.",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
   "module": "es/index.js",
   "scripts": {
     "build:lib": "babel src --out-dir lib --ignore src/__tests__/",
+    "build": "npm run eslint && npm run build:lib && npm run jest",
     "eslint": "eslint ./src",
     "eslint:fix": "eslint --fix ./src",
     "jest": "jest"

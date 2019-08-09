@@ -1,4 +1,5 @@
 {
     "editor.tabSize": 2,
-    "javascript.validate.enable": true
+    "javascript.validate.enable": true,
+    "git.ignoreLimitWarning": true
 }

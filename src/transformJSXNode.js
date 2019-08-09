@@ -2,7 +2,7 @@ const transformAttribute = (attribute, content) => {
   if (attribute.value) {
     switch (attribute.value.type) {
       case 'Literal':
-        return `${attribute.name.name}="'+'${attribute.value.value}'+'"`;
+        return `${attribute.name.name}="${attribute.value.value}"`;
       
       case 'JSXExpressionContainer':
         return `${attribute.name.name}="'+${content.substr(attribute.value.start+1, attribute.value.end-attribute.value.start-2)}+'"`;
