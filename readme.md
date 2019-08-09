@@ -7,9 +7,9 @@ Basically, by using JSX you can write concise HTML/XML-like structures (e.g., DO
 
 # What is JSX Vanilla?
 # [![npm version](https://badge.fury.io/js/jsx-vanilla.svg)](https://badge.fury.io/js/jsx-vanilla)
-JSX Vanilla is a JavaScript preprocessor that allows you to use JSX syntax in vanilla JavaScript, separetly from React. It transforms JSX elements into strings, then into DOM elements.
+JSX Vanilla is a JavaScript preprocessor that allows you to use JSX syntax in vanilla JavaScript, separately from React, by transforming JSX blocks into string literals.
 
-By using JSX one can write the following JSX/JavaScript code:
+Common JSX block:
 ```js
 const menu = (
   <ul>
@@ -20,7 +20,7 @@ const menu = (
 );
 ```
 
-And JSX Vanilla will transform it into this:
+After the JSX Vanilla preprocess:
 ```js
 const menu = (
   `<ul>
@@ -43,9 +43,9 @@ const menu = (
 const node = document.createRange().createContextualFragment(menu);
 ```
 # Syntax examples
-Here are some examples of JSX Vanilla usage.
+JSX Vanilla syntax is almost the same as native one, excepts some specific cases.
 
-## Variables declaration
+## Simple variables declaration
 ```js
 const text = <p>Hello world!</p>;
 const menu = (
@@ -57,7 +57,7 @@ const menu = (
 );
 ```
 
-## Parameters usage
+## Passing parameters
 ```js
 const SIX = 6;
 
@@ -74,7 +74,7 @@ const e = (
 );
 ```
 
-## Cycles examples
+## Cycle example
 ```js
 const array = ['First', 'Second', 'Third'];
 
@@ -98,7 +98,7 @@ document.body.appendChild(nodeFromString(<h2>Hello world!</h2>));
 ```
 
 ## Example of file preprocessing in Node.js
-If you are using webpack you can install custom <a href="https://www.npmjs.com/package/jsx-vanilla-loader">jsx-vanilla loader</a>
+If you are using webpack you can install custom <a href="https://www.npmjs.com/package/jsx-vanilla-loader">jsx-vanilla-loader</a>
 
 ```js
 const { preprocess } = require('jsx-vanilla');

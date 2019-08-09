@@ -1,6 +1,6 @@
 {
   "name": "jsx-vanilla",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "JSX is a JavaScript XML/HTML syntax extender, that allows you to render XML/HTML tags inside vanilla JavaScript.",
   "repository": {
     "type": "git",
