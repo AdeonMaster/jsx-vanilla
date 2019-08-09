@@ -11,10 +11,10 @@ const transformNode = (node, content) => {
           return node.expression.value;
 
         case 'Identifier':
-          return `'+${node.expression.name}+'`;
+          return `\`+${node.expression.name}+\``;
 
         case 'BinaryExpression':
-          return `'+${content.substr(node.start+1, node.end-node.start-2)}+'`;
+          return `\`+${content.substr(node.start+1, node.end-node.start-2)}+\``;
 
         default:
           return '';

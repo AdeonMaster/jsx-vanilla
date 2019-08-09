@@ -5,7 +5,7 @@ const transformAttribute = (attribute, content) => {
         return `${attribute.name.name}="${attribute.value.value}"`;
       
       case 'JSXExpressionContainer':
-        return `${attribute.name.name}="'+${content.substr(attribute.value.start+1, attribute.value.end-attribute.value.start-2)}+'"`;
+        return `${attribute.name.name}="\${${content.substr(attribute.value.start+1, attribute.value.end-attribute.value.start-2)}}"`;
     }
   } else {
     return attribute.name.name;
@@ -23,14 +23,14 @@ const transformNode = (node, content) => {
           return node.expression.value;
         
         case 'Identifier':
-          return `'+${node.expression.name}+'`;
+          return `\${${node.expression.name}}`;
         
         case 'BinaryExpression':
         case 'ConditionalExpression':
-          return `'+${content.substr(node.start+1, node.end-node.start-2)}+'`;
+          return `\${${content.substr(node.start+1, node.end-node.start-2)}}`;
 
         default:
-          return `'+${content.substr(node.expression.start, node.expression.end-node.expression.start)}+'`;
+          return `\${${content.substr(node.expression.start, node.expression.end-node.expression.start)}}`;
       }
     }
     

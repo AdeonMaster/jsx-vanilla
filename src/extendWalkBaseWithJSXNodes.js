@@ -1,5 +1,4 @@
-const emptyWalkFunction = () => {
-}
+const { noop } = require('./utils');
 
 const extendWalkBaseWithJSXNodes = walker => {
 	walker.base.JSXElement = (node, st, c) => {
@@ -19,9 +18,9 @@ const extendWalkBaseWithJSXNodes = walker => {
 		});
 	};
 
-	walker.base.JSXText = emptyWalkFunction;
-	walker.base.JSXAttribute = emptyWalkFunction;
-	walker.base.JSXEmptyExpression = emptyWalkFunction;
+	walker.base.JSXText = noop;
+	walker.base.JSXAttribute = noop;
+	walker.base.JSXEmptyExpression = noop;
 }
 
 module.exports = extendWalkBaseWithJSXNodes;

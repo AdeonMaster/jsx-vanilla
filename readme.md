@@ -22,11 +22,25 @@ const menu = (
 
 And JSX Vanilla will transform it into this:
 ```js
-const menu = '<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>';
+const menu = (
+  `<ul>
+    <li><a href="#">First</></li>
+    <li><a href="#">Second</></li>
+    <li><a href="#">Third</></li>
+  </ul>`
+);
 ```
-Then it could be transformed into DOM elements:
+If desired, received strings could be transformed into DOM elements:
 ```js
-const menu = document.createRange().createContextualFragment('<ul id="nav"><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul>');
+const menu = (
+  `<ul>
+    <li><a href="#">First</></li>
+    <li><a href="#">Second</></li>
+    <li><a href="#">Third</></li>
+  </ul>`
+);
+
+const node = document.createRange().createContextualFragment(menu);
 ```
 # Syntax examples
 Here are some examples of JSX Vanilla usage.
@@ -93,13 +107,19 @@ const fs = require('fs');
 fs.readFile('TARGET_FILE_PATH', 'utf8', (error, content) => {
   if (error) return;
 
-  fs.writeFile('OUTPUT_FILE_PATH', preprocess(content), error => {
-    if (error) return;
+  try {
+    const output = preprocess(content);
 
-    // other code
-  });
+    fs.writeFile('OUTPUT_FILE_PATH', output, error => {
+      if (error) return;
+
+      // other code
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 ```
 
 # Known issues
-- There is some extra space between nested tags after preprocess which is not affect the output result
+none
