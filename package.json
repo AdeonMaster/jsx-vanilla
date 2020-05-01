@@ -29,20 +29,20 @@
   "author": "AdeonMaster",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.2",
-    "babel-plugin-transform-imports": "^1.5.1",
-    "eslint": "^5.16.0",
-    "regenerator-runtime": "^0.13.2",
-    "jest": "^24.8.0"
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "eslint": "^6.8.0",
+    "regenerator-runtime": "^0.13.5",
+    "jest": "^25.5.3"
   },
   "dependencies": {
-    "acorn": "^6.2.1",
-    "acorn-jsx": "^5.0.1",
-    "acorn-walk": "^6.2.0"
+    "acorn": "^7.1.1",
+    "acorn-jsx": "^5.2.0",
+    "acorn-walk": "^7.1.1"
   }
 }
