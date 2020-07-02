@@ -5,8 +5,20 @@
       "modules": true
     }
   },
+  "plugins": [
+    "jest",
+    "prettier",
+    "sonarjs"
+  ],
+  "rules": {
+    "linebreak-style": "off",
+    "prettier/prettier": "error"
+  },
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:prettier/recommended",
+    "plugin:sonarjs/recommended"
   ],
   "env": {
     "jest": true,

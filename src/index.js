@@ -1,7 +1,6 @@
-const preprocess = require('./process');
-const { nodeFromString } = require('./utils');
+import preprocess from './process';
+import { nodeFromString } from './utils';
 
-module.exports = {
-	preprocess,
-	nodeFromString
-}
+export { preprocess, nodeFromString };
+
+export default preprocess;

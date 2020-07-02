@@ -1,4 +1,4 @@
-const transformJSXNode = require('./transformJSXNode');
+import transformJSXNode from './transform-jsx-node';
 
 const transformNode = (node, content) => {
   switch (node.type) {
@@ -14,10 +14,10 @@ const transformNode = (node, content) => {
           return `\`+${node.expression.name}+\``;
 
         case 'BinaryExpression':
-          return `\`+${content.substr(node.start+1, node.end-node.start-2)}+\``;
+          return `\`+${content.substr(node.start + 1, node.end - node.start - 2)}+\``;
 
         default:
-          return '';
+          throw new Error(`Unknown node expression type (${node.expression.type})`);
       }
     }
 
@@ -25,8 +25,8 @@ const transformNode = (node, content) => {
       return transformJSXNode(node, content);
 
     default:
-      return '';
+      throw new Error(`Unknown node type (${node.type})`);
   }
-}
+};
 
-module.exports = transformNode;
+export default transformNode;

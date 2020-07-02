@@ -1,21 +1,23 @@
-const walker = require('acorn-walk');
+import * as walker from 'acorn-walk';
 
-const extendWalkBaseWithJSXNodes = require('./extendWalkBaseWithJSXNodes');
-const findJSXNode = require('./findJSXNode');
-const transformJSXNode = require('./transformJSXNode');
-const replaceJSXNode = require('./replaceJSXNode');
+import extendWalkBaseWithJSXNodes from './extend-walk-base-with-jsx-nodes';
+import findJSXNode from './find-jsx-node';
+import transformJSXNode from './transform-jsx-node';
+import replaceJSXNode from './replace-jsx-node';
 
 extendWalkBaseWithJSXNodes(walker);
 
-const preprocess = content => {
-	let node = null;
+const preprocess = (content) => {
+  let node = null;
 
-	while((node = findJSXNode(walker, content)) != null) {
-		const transformedNode = transformJSXNode(node, content);
-		content = replaceJSXNode(node, transformedNode, content);
-	}
+  /* eslint-disable-next-line no-cond-assign */
+  while ((node = findJSXNode(walker, content)) != null) {
+    const transformedNode = transformJSXNode(node, content);
+    /* eslint-disable-next-line no-param-reassign */
+    content = replaceJSXNode(node, transformedNode, content);
+  }
 
-	return content;
-}
+  return content;
+};
 
-module.exports = preprocess;
+export default preprocess;

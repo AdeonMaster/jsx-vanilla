@@ -1,7 +1,3 @@
-const noop = () => {};
-const nodeFromString = string => document.createRange().createContextualFragment(string);
+/* eslint import/prefer-default-export:0 */
 
-module.exports = {
-  noop,
-  nodeFromString
-}
+export const nodeFromString = (string) => document.createRange().createContextualFragment(string);

@@ -1,7 +1,7 @@
-const acorn = require('acorn');
-const acornJSX = require('acorn-jsx');
+import { Parser } from 'acorn';
+import acornJSX from 'acorn-jsx';
 
-const extendedAcornParser = acorn.Parser.extend(acornJSX());
+const extendedAcornParser = Parser.extend(acornJSX());
 
 const findJSXNode = (walker, content) => {
   const root = extendedAcornParser.parse(content);
@@ -9,12 +9,12 @@ const findJSXNode = (walker, content) => {
   let foundNode = null;
 
   walker.simple(root, {
-    'JSXElement': node => {
+    JSXElement: (node) => {
       foundNode = node;
-    }
+    },
   });
 
   return foundNode;
-}
+};
 
-module.exports = findJSXNode;
+export default findJSXNode;
